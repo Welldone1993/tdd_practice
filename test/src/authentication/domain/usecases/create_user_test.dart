@@ -4,16 +4,18 @@ import 'package:mocktail/mocktail.dart';
 import 'package:tdd_tutorial/src/authentication/domain/repositories/authentication_repository.dart';
 import 'package:tdd_tutorial/src/authentication/domain/usecases/create_user.dart';
 
-class MockAuthRepo extends Mock implements AuthenticationRepository {}
+import 'authentication_repository.mock.dart';
 
 void main() {
   late CreateUser usecase;
   late AuthenticationRepository repository;
 
-  setUp(() {
-    repository = MockAuthRepo();
-    usecase = CreateUser(repository);
-  });
+  setUp(
+    () {
+      repository = MockAuthRepo();
+      usecase = CreateUser(repository);
+    },
+  );
 
   test(
     'should call [AuthenticationRepository.createUser]',
@@ -31,6 +33,7 @@ void main() {
 
       expect(result, equals(const Right<dynamic, void>(null)));
 
+      //Assert
       verify(
         () => repository.createUser(
           name: any(named: 'name'),
