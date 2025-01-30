@@ -28,6 +28,13 @@ class CreateUserParams extends Equatable {
     required this.creationDate,
   });
 
+  const CreateUserParams.empty()
+      : this(
+          creationDate: '_empty.CreationDate',
+          name: '_empty.name',
+          avatar: '_empty.avatar',
+        );
+
   @override
   List<Object?> get props => [name, avatar, creationDate];
 }
